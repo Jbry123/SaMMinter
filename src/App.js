@@ -103,9 +103,9 @@ function App() {
     CONTRACT_ADDRESS: "0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
     SCAN_LINK: "https://etherscan.io/address/0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
     NETWORK: {
-      NAME: "Ethereum",
-      SYMBOL: "ETH",
-      ID: 1,
+      NAME: "Mumbai",
+      SYMBOL: "MATIC",
+      ID: 80001
     },
     NFT_NAME: "RDB Car Club",
     SYMBOL: "RDBCC",
@@ -135,7 +135,7 @@ function App() {
     // signature = S2Atx0qfYi32bleF
     blockchain.smartContract.methods
     //change params in mint to number of mints first, then the signature
-    .mint( mintAmount, signature)
+    .mint(mintAmount, signature)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -204,10 +204,10 @@ function App() {
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "#020202" }}
-        image={CONFIG.SHOW_BACKGROUND ? "https://rdbcarclub.com/wp-content/uploads/2021/11/new1-1.png" : null}
+        image={CONFIG.SHOW_BACKGROUND ? "https://dreamstarter.co/wp-content/uploads/2022/02/DreamStarter-1220-x-630.png" : null}
       >
         <a href={CONFIG.MARKETPLACE_LINK}>
-          <StyledLogo style={{borderRadius: "25px"}} alt={"logo"} src={"https://rdbcarclub.com/wp-content/uploads/2021/11/cropped-IMG_1282.jpg"} />
+          <StyledLogo style={{borderRadius: "25px"}} alt={"logo"} src={"https://dreamstarter.co/wp-content/uploads/2022/02/SaM_space_travel_Text-copy.png"} />
         </a>
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24, width: "50%", minWidth: "360px" }} test>

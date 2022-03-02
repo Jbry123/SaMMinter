@@ -2,9 +2,9 @@
   "CONTRACT_ADDRESS": "0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
   "SCAN_LINK": "https://etherscan.io/address/0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
   "NETWORK": {
-    "NAME": "Ethereum",
-    "SYMBOL": "ETH",
-    "ID": 1
+    "NAME": "Mumbai",
+    "SYMBOL": "MATIC",
+    "ID": 80001
   },
   "NFT_NAME": "RDB Car Club",
   "SYMBOL": "RDBCC",
