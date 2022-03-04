@@ -1,17 +1,17 @@
 {
-  "CONTRACT_ADDRESS": "0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
-  "SCAN_LINK": "https://etherscan.io/address/0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
+  "CONTRACT_ADDRESS": "0xE12211736218E784ae59F14Cf849B82B63108213",
+  "SCAN_LINK": "https://mumbai.polygonscan.com/address/0xE12211736218E784ae59F14Cf849B82B63108213",
   "NETWORK": {
     "NAME": "Mumbai",
     "SYMBOL": "MATIC",
     "ID": 80001
   },
-  "NFT_NAME": "RDB Car Club",
-  "SYMBOL": "RDBCC",
+  "NFT_NAME": "SUN & MOON LAUNCH NFT",
+  "SYMBOL": "SaMNFT",
   "MAX_SUPPLY": 222,
-  "WEI_COST": 150000000000000000,
+  "WEI_COST": 0,
   "DISPLAY_COST": "FREE",
-  "GAS_LIMIT": 120000,
+  "GAS_LIMIT": 320000,
   "MARKETPLACE": "Opensea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/rdb-official",
   "SHOW_BACKGROUND": true

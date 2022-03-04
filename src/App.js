@@ -100,23 +100,30 @@ function App() {
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
-    CONTRACT_ADDRESS: "0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
-    SCAN_LINK: "https://etherscan.io/address/0x20bcde673cc3e77d843d100ea14e3760f64e1e11",
+    CONTRACT_ADDRESS: "0xE12211736218E784ae59F14Cf849B82B63108213",
+    SCAN_LINK: "https://mumbai.polygonscan.com/address/0xE12211736218E784ae59F14Cf849B82B63108213",
     NETWORK: {
       NAME: "Mumbai",
       SYMBOL: "MATIC",
       ID: 80001
     },
     NFT_NAME: "SUN & MOON LAUNCH NFT",
-    SYMBOL: "SaM",
+    SYMBOL: "SaMNFT",
     MAX_SUPPLY: 222,
     DISPLAY_COST: "FREE",
     GAS_LIMIT: 120000,
     MARKETPLACE: "opensea",
-    MARKETPLACE_LINK: "https://opensea.io/collection/rdb-official",
+    MARKETPLACE_LINK: "https://opensea.io/collection/DreamStarter",
     SHOW_BACKGROUND: true,
   });
 
+  const checkWhitelist = () => {
+    console.log(
+      blockchain.smartContract.methods.whitelisted("0x12c65221EAF5412fA3bC8072A0ef07a2E4d2F581").call().then( function( info ) {
+      console.log("info: ", info);
+      })
+    );
+  };
 
   const claimNFTs = () => {
     let cost = 0;
@@ -130,11 +137,10 @@ function App() {
     setClaimingNft(true);
     
  
-    let signature = "S2Atx0qfYi32bleF";
     // signature = S2Atx0qfYi32bleF
     blockchain.smartContract.methods
     //change params in mint to number of mints first, then the signature
-    .mint(mintAmount, signature)
+    .mint(blockchain.account, mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -367,8 +373,8 @@ function App() {
                         style={{ lineHeight: 0.4 }}
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
-                          e.preventDefault();
-                          decrementMintAmount();
+                        e.preventDefault();
+                          checkWhitelist();
                         }}
                       >
                         -
@@ -386,8 +392,7 @@ function App() {
                       <StyledRoundButton
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
-                          e.preventDefault();
-                          incrementMintAmount();
+                          alert('only one NFT per person!')
                         }}
                       >
                         +
