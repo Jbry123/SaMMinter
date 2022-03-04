@@ -93,6 +93,7 @@ export const StyledLink = styled.a`
 `;
 
 function App() {
+  let whitelistedStatus = "test";
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
@@ -105,32 +106,47 @@ function App() {
     NETWORK: {
       NAME: "Matic",
       SYMBOL: "MATIC",
-      ID: 80001
+      ID: 137
     },
     NFT_NAME: "SUN & MOON LAUNCH NFT",
     SYMBOL: "SaMNFT",
     MAX_SUPPLY: 222,
     DISPLAY_COST: "FREE",
-    GAS_LIMIT: 320000,
+    GAS_LIMIT: 76320000,
     MARKETPLACE: "opensea",
     MARKETPLACE_LINK: "https://opensea.io/collection/DreamStarter",
     SHOW_BACKGROUND: true,
   });
 
   const checkWhitelist = () => {
-    console.log(
-      blockchain.smartContract.methods.whitelisted(blockchain.account).call().then( function( info ) {
-      console.log("whitelisted?: ", info, blockchain.account);
-      })
-    );
+    if (blockchain.account) {
+
+      
+      console.log(
+        blockchain.smartContract.methods.whitelisted(blockchain.account).call().then( function( info ) {
+        console.log("whitelisted?: ", info, blockchain.account);
+        if (info == true) {
+          document.getElementById('WLStatus').style.background = "#27f9373b";
+          document.getElementById('WLStatus').innerHTML = 'STATUS:</br>' + blockchain.account + '</br></br>YOU ARE WHITELISTED, GO AHEAD AND MINT 1 FREE NFT!';
+        } else {
+          document.getElementById('WLStatus').style.background = "#f9272763";
+          document.getElementById('WLStatus').innerHTML = 'STATUS:</br>' + blockchain.account + '</br></br>YOU ARE NOT WHITELISTED, COME BACK SOON FOR MORE PUBLIC SALES, AND MORE CHANCES TO WIN WHITELISTS!';
+        }
+        
+        })
+      );
+    } else {
+      dispatch(connect());
+      document.getElementById('WLStatus').innerHTML = 'Please connect to the blockchain to confirm, and click again.'
+    }
   };
 
-  //rdb metadata changed.
-  //add hashtag to number on nft
+  //add hashtag to number on nft ?LATER
+
   //add check for whitelist
   //change road map to home
   //send zip file to chris
-
+    
 
   const claimNFTs = () => {
     let cost = 0;
@@ -149,10 +165,11 @@ function App() {
     //change params in mint to number of mints first, then the signature
     .mint(blockchain.account, mintAmount)
       .send({
-        gasLimit: String(totalGasLimit),
+        gasPrice: '150000000000',
         to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
         value: totalCostWei,
+        gas: 1500000
       })
       .once("error", (err) => {
         console.log(err);
@@ -218,7 +235,7 @@ function App() {
         style={{ padding: 24, backgroundColor: "#020202" }}
         image={CONFIG.SHOW_BACKGROUND ? null : null}
       >
-        <a href={CONFIG.MARKETPLACE_LINK}>
+        <a href="https://www.dreamstarter.co">
           <StyledLogo style={{borderRadius: "25px"}} alt={"logo"} src={"https://dreamstarter.co/wp-content/uploads/2022/02/SaM_space_travel_Text-copy.png"} />
         </a>
         <s.SpacerSmall />
@@ -235,7 +252,16 @@ function App() {
             }}
           >
             <StyledLogo style={{borderRadius: "25px", width: "100%", height: "auto"}} alt={"logo"} src={"https://gateway.pinata.cloud/ipfs/QmdrCRxekajoyxWgmbqzNRq12nikmWbUY1Y75duimY3ynM"} />
-
+            <StyledButton style={{marginTop: "25px", width: "175px"}}
+              onClick={() => {
+                checkWhitelist();
+              }}
+            >
+              CHECK WHITELIST STATUS
+            </StyledButton>
+            <span id="WLStatus" style={{color: "white", fontWeight: "600", marginTop: "15px", textAlign: "center", background: "#ffffff50", padding: "6px", borderRadius: "15px"}}>
+            STATUS:
+            </span>
           </s.Container>
 
           <s.Container
@@ -285,9 +311,9 @@ function App() {
                   margin: "5px",
                 }}
               >
-                Roadmap
+                HOME
               </StyledButton>
-              <StyledButton
+              {/* <StyledButton
                 style={{
                   margin: "5px",
                 }}
@@ -296,7 +322,7 @@ function App() {
                 }}
               >
                 {CONFIG.MARKETPLACE}
-              </StyledButton>
+              </StyledButton> */}
             </span>
             <s.SpacerSmall />
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
@@ -407,7 +433,7 @@ function App() {
                     </s.Container>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledButton id="buyButton"
+                      <StyledButton style={{height: "60px", width: "150px"}} id="buyButton"
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();

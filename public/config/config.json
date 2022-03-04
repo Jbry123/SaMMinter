@@ -4,14 +4,14 @@
   "NETWORK": {
     "NAME": "Matic",
     "SYMBOL": "MATIC",
-    "ID": 80001
+    "ID": 137
   },
   "NFT_NAME": "SUN & MOON LAUNCH NFT",
   "SYMBOL": "SaMLAUNCH",
   "MAX_SUPPLY": 222,
   "WEI_COST": 0,
   "DISPLAY_COST": "FREE",
-  "GAS_LIMIT": 320000,
+  "GAS_LIMIT": 76320000,
   "MARKETPLACE": "Opensea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/rdb-official",
   "SHOW_BACKGROUND": true
