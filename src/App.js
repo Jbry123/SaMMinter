@@ -352,7 +352,7 @@ function App() {
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  (Excluding gas fees.)
+                  (Excluding gas fees)
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -364,7 +364,7 @@ function App() {
                         color: "var(--accent-text)",
                       }}
                     >
-                      Connect to the {CONFIG.NETWORK.NAME} network
+                      Connect to the Polygon Mainnet please!
                     </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledButton
