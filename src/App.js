@@ -97,13 +97,13 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+  const [feedback, setFeedback] = useState(`Click MINT to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
-    CONTRACT_ADDRESS: "0xE12211736218E784ae59F14Cf849B82B63108213",
-    SCAN_LINK: "https://mumbai.polygonscan.com/address/0xE12211736218E784ae59F14Cf849B82B63108213",
+    CONTRACT_ADDRESS: "0x5C45512C39958c73bDdcdCC1179C049D0D079b73",
+    SCAN_LINK: "https://polygonscan.com/address/0x5C45512C39958c73bDdcdCC1179C049D0D079b73",
     NETWORK: {
-      NAME: "Mumbai",
+      NAME: "Matic",
       SYMBOL: "MATIC",
       ID: 80001
     },
@@ -111,7 +111,7 @@ function App() {
     SYMBOL: "SaMNFT",
     MAX_SUPPLY: 222,
     DISPLAY_COST: "FREE",
-    GAS_LIMIT: 120000,
+    GAS_LIMIT: 320000,
     MARKETPLACE: "opensea",
     MARKETPLACE_LINK: "https://opensea.io/collection/DreamStarter",
     SHOW_BACKGROUND: true,
@@ -119,11 +119,18 @@ function App() {
 
   const checkWhitelist = () => {
     console.log(
-      blockchain.smartContract.methods.whitelisted("0x12c65221EAF5412fA3bC8072A0ef07a2E4d2F581").call().then( function( info ) {
-      console.log("info: ", info);
+      blockchain.smartContract.methods.whitelisted(blockchain.account).call().then( function( info ) {
+      console.log("whitelisted?: ", info, blockchain.account);
       })
     );
   };
+
+  //rdb metadata changed.
+  //add hashtag to number on nft
+  //add check for whitelist
+  //change road map to home
+  //send zip file to chris
+
 
   const claimNFTs = () => {
     let cost = 0;
@@ -408,7 +415,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "MINTING" : "BUY"}
+                        {claimingNft ? "MINTING" : "MINT"}
                       </StyledButton>
                     </s.Container>
                   </>
