@@ -109,7 +109,7 @@ function App() {
       ID: 137
     },
     NFT_NAME: "SUN & MOON LAUNCH NFT",
-    SYMBOL: "SaMNFT",
+    SYMBOL: "SaMLAUNCH",
     MAX_SUPPLY: 222,
     DISPLAY_COST: "FREE",
     GAS_LIMIT: 76320000,
