@@ -12,7 +12,7 @@ export const StyledButton = styled.button`
   padding: 10px;
   border-radius: 50px;
   border: none;
-  background-color: #F3164A;
+  background-color: #69c4a6;
   padding: 10px;
   font-weight: bold;
   color: var(--secondary-text);
@@ -32,7 +32,7 @@ export const StyledRoundButton = styled.button`
   padding: 10px;
   border-radius: 100%;
   border: none;
-  background-color: #F3164A;
+  background-color: #69c4a6;
   padding: 10px;
   font-weight: bold;
   font-size: 15px;
@@ -88,7 +88,7 @@ export const StyledImg = styled.img`
 `;
 
 export const StyledLink = styled.a`
-  color: #F3164A;
+  color: #69c4a6;
   text-decoration: none;
 `;
 
@@ -107,20 +107,19 @@ function App() {
       SYMBOL: "MATIC",
       ID: 80001
     },
-    NFT_NAME: "RDB Car Club",
-    SYMBOL: "RDBCC",
-    MAX_SUPPLY: 5000,
-    WEI_COST: 150000000000000000,
-    DISPLAY_COST: 0.15,
+    NFT_NAME: "SUN & MOON LAUNCH NFT",
+    SYMBOL: "SaM",
+    MAX_SUPPLY: 222,
+    DISPLAY_COST: "FREE",
     GAS_LIMIT: 120000,
     MARKETPLACE: "opensea",
     MARKETPLACE_LINK: "https://opensea.io/collection/rdb-official",
-    SHOW_BACKGROUND: false,
+    SHOW_BACKGROUND: true,
   });
 
 
   const claimNFTs = () => {
-    let cost = CONFIG.WEI_COST;
+    let cost = 0;
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
@@ -204,25 +203,39 @@ function App() {
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "#020202" }}
-        image={CONFIG.SHOW_BACKGROUND ? "https://dreamstarter.co/wp-content/uploads/2022/02/DreamStarter-1220-x-630.png" : null}
+        image={CONFIG.SHOW_BACKGROUND ? null : null}
       >
         <a href={CONFIG.MARKETPLACE_LINK}>
           <StyledLogo style={{borderRadius: "25px"}} alt={"logo"} src={"https://dreamstarter.co/wp-content/uploads/2022/02/SaM_space_travel_Text-copy.png"} />
         </a>
         <s.SpacerSmall />
-        <ResponsiveWrapper flex={1} style={{ padding: 24, width: "50%", minWidth: "360px" }} test>
+        <ResponsiveWrapper flex={1} style={{ padding: 24, width: "100%", minWidth: "360px" }} test>
           <s.SpacerLarge />
           <s.Container
             flex={2}
             jc={"center"}
             ai={"center"}
             style={{
-              backgroundColor: "rgba(80, 80, 80, 0.85)",
+              width: "100%",
+              padding: 24,
+              borderRadius: 24
+            }}
+          >
+            <StyledLogo style={{borderRadius: "25px", width: "100%", height: "auto"}} alt={"logo"} src={"https://gateway.pinata.cloud/ipfs/QmdrCRxekajoyxWgmbqzNRq12nikmWbUY1Y75duimY3ynM"} />
+
+          </s.Container>
+
+          <s.Container
+            flex={2}
+            jc={"center"}
+            ai={"center"}
+            style={{
+              backgroundColor: "rgba(20, 20, 20, 0.95)",
               width: "100%",
               padding: 24,
               borderRadius: 24,
-              border: "4px solid #020202",
-              boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
+              border: "2px solid #69C4A6",
+              boxShadow: "0px 1px 11px 2px #69C4A680",
             }}
           >
             <s.TextTitle
@@ -230,16 +243,16 @@ function App() {
                 textAlign: "center",
                 fontSize: 50,
                 fontWeight: "bold",
-                color: "#F3164A",
+                color: "#69c4a6",
               }}
             >
-              <span style={{color: "white", fontSize: "15px", lineHeight: "1"}}>*mint data not accurate until wallet is connected, we're at over 1400*</span> <br />
+              <span style={{color: "white", fontSize: "15px", lineHeight: "1"}}>CLAIM YOUR FREE NFT IF YOU'RE ON THE WHITELIST!</span> <br />
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
             </s.TextTitle>
             <s.TextDescription
               style={{
                 textAlign: "center",
-                color: "#F3164A",
+                color: "#69c4a6",
               }}
             >
               <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
@@ -253,7 +266,7 @@ function App() {
             >
               <StyledButton
                 onClick={(e) => {
-                  window.open("https://rdbcarclub.com", "_blank");
+                  window.open("https://dreamstarter.co", "_blank");
                 }}
                 style={{
                   margin: "5px",
@@ -295,14 +308,12 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}.
+                  This NFT is FREE for all whitelisted addresses!
                 </s.TextTitle>
-                <s.SpacerXSmall />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Excluding gas fees.
+                  (Excluding gas fees.)
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -401,6 +412,8 @@ function App() {
             )}
             <s.SpacerMedium />
           </s.Container>
+
+          
           <s.SpacerLarge />
         </ResponsiveWrapper>
         <s.SpacerMedium />
@@ -408,7 +421,7 @@ function App() {
           <s.TextDescription
             style={{
               textAlign: "center",
-              color: "#F3164A",
+              color: "#69c4a6",
             }}
           >
             Please make sure you are connected to the right network (
@@ -419,7 +432,7 @@ function App() {
           <s.TextDescription
             style={{
               textAlign: "center",
-              color: "#F3164A",
+              color: "#69c4a6",
             }}
           >
             We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
