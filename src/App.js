@@ -352,7 +352,7 @@ function App() {
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  (Excluding gas fees)
+                  (Excluding MATIC gas fees)
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -401,7 +401,7 @@ function App() {
                       {feedback}
                     </s.TextDescription>
                     <s.SpacerMedium />
-                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                    <s.Container style={{display: "none"}} ai={"center"} jc={"center"} fd={"row"}>
                       <StyledRoundButton
                         style={{ lineHeight: 0.4 }}
                         disabled={claimingNft ? 1 : 0}
@@ -472,10 +472,7 @@ function App() {
               textAlign: "center",
               color: "#69c4a6",
             }}
-          >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
+          >Thank you for supporting us. We at Dreamr want everyone to follow their dreams and be seen.
           </s.TextDescription>
         </s.Container>
       </s.Container>
