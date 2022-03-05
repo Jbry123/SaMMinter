@@ -158,32 +158,44 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
-    
+
+    blockchain.smartContract.methods.whitelisted(blockchain.account).call().then( function( info ) {
+      console.log("whitelisted?: ", info, blockchain.account);
+      if (info == true) {
  
-    // signature = S2Atx0qfYi32bleF
-    blockchain.smartContract.methods
-    //change params in mint to number of mints first, then the signature
-    .mint(blockchain.account, mintAmount)
-      .send({
-        gasPrice: '150000000000',
-        to: CONFIG.CONTRACT_ADDRESS,
-        from: blockchain.account,
-        value: totalCostWei,
-        gas: 1500000
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
-      })
-      .then((receipt) => {
-        console.log(receipt);
-        setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
-        );
-        setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
-      });
+        // signature = S2Atx0qfYi32bleF
+        blockchain.smartContract.methods
+        //change params in mint to number of mints first, then the signature
+        .mint(blockchain.account, mintAmount)
+        .send({
+          gasPrice: '150000000000',
+          to: CONFIG.CONTRACT_ADDRESS,
+          from: blockchain.account,
+          value: totalCostWei,
+          gas: 1500000
+        })
+        .once("error", (err) => {
+          console.log(err);
+          setFeedback("Sorry, something went wrong please try again later.");
+          setClaimingNft(false);
+        })
+        .then((receipt) => {
+          console.log(receipt);
+          setFeedback(
+            `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+          );
+          setClaimingNft(false);
+          dispatch(fetchData(blockchain.account));
+        });
+
+      } 
+      else {
+        setFeedback(`Most likely you're not on the Whitelist, if you think this is an error, feel free to message us on instagram @dreamr.app`);
+    setClaimingNft(false);
+          return
+      }
+        
+    })
   };
 
   const decrementMintAmount = () => {
